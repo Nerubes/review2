@@ -2,10 +2,11 @@ import random
 
 import telebot as tb
 
+import const
 import database
 import parse
 
-bot = tb.TeleBot("1750598890:AAHK3hpYVLodONFBNXpYO0JEnVhlLgF-qV8")
+bot = tb.TeleBot(const.TOKEN)
 
 
 @bot.message_handler(content_types=['text'])
@@ -62,7 +63,7 @@ def get_text_message(message):
     elif commands[0] == "/unsubscribe":
         database.unsubscribe(message)
         bot.send_message(message.from_user.id, "You were unsubscribed.")
-    elif commands[0] == "//send" and database.get_admin(message):
+    elif commands[0] == "//send" and const.ADMIN:
         ser = ""
         for word in range(1, len(commands)):
             ser = ser + commands[word] + " "

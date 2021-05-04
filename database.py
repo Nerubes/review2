@@ -1,7 +1,5 @@
 import sqlite3
 
-admin_id = 470008567
-
 
 def subscribe(message):
     with sqlite3.connect('users.db') as conn:
@@ -36,7 +34,3 @@ def sub_exist(message):
     with sqlite3.connect('users.db') as conn:
         cur = conn.cursor()
         return bool(len(cur.execute("SELECT * FROM users WHERE userid = {}".format(message.from_user.id)).fetchall()))
-
-
-def get_admin(message):
-    return message.from_user.id == admin_id
