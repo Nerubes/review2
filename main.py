@@ -16,7 +16,6 @@ def get_message(message):
     :param message: сообщение
     """
     res = generate_message(message.text, message.from_user.id)
-    print(res)
     for i in range(res[0][3]):
         bot.send_photo(res[i][0], res[i][1], res[i][2])
 
