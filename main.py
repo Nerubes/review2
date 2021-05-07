@@ -30,14 +30,14 @@ def generate_message(message_text, user_id):
     ans_to = []
     if commands[0] == "/help" or commands[0] == "/start":
         ans_to.append((user_id, const.HELP,
-                      "/top random\n" +
-                      "/top [number]\n" +
-                      "/new\n" +
-                      "/random\n" +
-                      "/search [your text]\n" +
-                      "/search_genre_top [детектив/комедия/пародия/мехи/повседневность/романтика,/фантастика/этти]\n" +
-                      "/subscribe\n" +
-                      "/unsubscribe\n", 1))
+                       "/top random\n" +
+                       "/top [number]\n" +
+                       "/new\n" +
+                       "/random\n" +
+                       "/search [your text]\n" +
+                       "/search_genre_top [детектив/комедия/пародия/мехи/повседневность/романтика,/фантастика/этти]\n" +
+                       "/subscribe\n" +
+                       "/unsubscribe\n", 1))
     elif len(commands) == 2 and commands[0] == "/top":
         if commands[1] == "random":
             res = parse.parse_top(100)

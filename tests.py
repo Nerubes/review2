@@ -16,29 +16,32 @@ class Test(unittest.TestCase):
         ("/search_genre_top jfklj", 1)
     ]
     test_right_gen = [
-        [(1, 'https://www.spletnik.ru/img/__post/66/66e7863b682b8d02f539a3f7d5b7f471_806.jpg',
-          '/top random\n/top [number]\n/new\n/random\n/search [your text]\n/search_genre_top [детектив/комедия/пародия/мехи/повседневность/романтика,/фантастика/этти]\n/subscribe\n/unsubscribe\n',
+        [(1, "https://www.spletnik.ru/img/__post/66/66e7863b682b8d02f539a3f7d5b7f471_806.jpg",
+          "/top random\n/top [number]\n/new\n/random\n/search [your text]\n/search_genre_top " +
+          " [детектив/комедия/пародия/мехи/повседневность/романтика,/фантастика/этти]\n/subscribe\n/unsubscribe\n",
           1)],
-        [(1, 'https://znaiwifi.com/wp-content/uploads/2018/01/hqdefault.jpg',
-          'Invalid Command. Type /help for all commands.', 1)],
-        [(1, 'https://yummyanime.club//img/posters/1613122367.jpg',
-          'Код Гиасс: Восстание Лелуша R2: https://yummyanime.club//catalog/item/kod-gias-vosstavshij-lelush-r2', 1)],
-        [(1, 'https://znaiwifi.com/wp-content/uploads/2018/01/hqdefault.jpg',
-          'Invalid Command. Type /help for all commands.', 1)],
-        [(1, 'https://yummyanime.club//img/posters/1597596053.jpg',
-          'Не издевайся, Нагаторо: https://yummyanime.club/catalog/item/ne-izdevajsya-nagatoro', 1)],
-        [(1, 'https://znaiwifi.com/wp-content/uploads/2018/01/hqdefault.jpg', 'Nothing was found.', 1)],
-        [(1, 'https://yummyanime.club//img/posters/1617200003.jpg',
-          'Реинкарнация безработного: История о приключениях в другом мире: https://yummyanime.club/catalog/item/reinkarnaciya-bezrabotnogo-istoriya-o-priklyucheniyah-v-drugom-mire',
-          5), (1, 'https://yummyanime.club//img/posters/1596925918.jpg',
-               'Нет игры - нет жизни: Начало: https://yummyanime.club/catalog/item/net-igry-net-zhizni-s-nulya', 5), (
-             1, 'https://yummyanime.club//img/posters/1570883985.jpg',
-             'Кулинарные поединки Сомы: https://yummyanime.club/catalog/item/kulinarnye-poedinki-somy', 5), (
-             1, 'https://yummyanime.club//img/posters/1578821002.jpg',
-             'Кулинарные поединки Сомы: Второе блюдо: https://yummyanime.club/catalog/item/kulinarnye-poedinki-somy-tv-2',
-             5), (1, 'https://yummyanime.club//img/posters/1595875111.jpg',
-                  'Нет игры - нет жизни: https://yummyanime.club/catalog/item/igra-na-vyzhivanie', 5)],
-        [(1, 'https://znaiwifi.com/wp-content/uploads/2018/01/hqdefault.jpg', 'Invalid genre.', 1)]
+        [(1, "https://znaiwifi.com/wp-content/uploads/2018/01/hqdefault.jpg",
+          "Invalid Command. Type /help for all commands.", 1)],
+        [(1, "https://yummyanime.club//img/posters/1613122367.jpg",
+          "Код Гиасс: Восстание Лелуша R2: https://yummyanime.club//catalog/item/kod-gias-vosstavshij-lelush-r2", 1)],
+        [(1, "https://znaiwifi.com/wp-content/uploads/2018/01/hqdefault.jpg",
+          "Invalid Command. Type /help for all commands.", 1)],
+        [(1, "https://yummyanime.club//img/posters/1597596053.jpg",
+          "Не издевайся, Нагаторо: https://yummyanime.club/catalog/item/ne-izdevajsya-nagatoro", 1)],
+        [(1, "https://znaiwifi.com/wp-content/uploads/2018/01/hqdefault.jpg", 'Nothing was found.', 1)],
+        [(1, "https://yummyanime.club//img/posters/1617200003.jpg",
+          "Реинкарнация безработного: История о приключениях в другом мире:  " +
+          "https://yummyanime.club/catalog/item/reinkarnaciya-bezrabotnogo-istoriya-o-priklyucheniyah-v-drugom-mire",
+          5), (1, "https://yummyanime.club//img/posters/1596925918.jpg",
+               "Нет игры - нет жизни: Начало: https://yummyanime.club/catalog/item/net-igry-net-zhizni-s-nulya", 5), (
+             1, "https://yummyanime.club//img/posters/1570883985.jpg",
+             "Кулинарные поединки Сомы: https://yummyanime.club/catalog/item/kulinarnye-poedinki-somy", 5), (
+             1, "https://yummyanime.club//img/posters/1578821002.jpg",
+             "Кулинарные поединки Сомы: Второе блюдо: " +
+             "https://yummyanime.club/catalog/item/kulinarnye-poedinki-somy-tv-2",
+             5), (1, "https://yummyanime.club//img/posters/1595875111.jpg",
+                  "Нет игры - нет жизни: https://yummyanime.club/catalog/item/igra-na-vyzhivanie", 5)],
+        [(1, "https://znaiwifi.com/wp-content/uploads/2018/01/hqdefault.jpg", "Invalid genre.", 1)]
     ]
     test_bd_name = "test.bd"
 
