@@ -38,7 +38,10 @@ def get_index(genre_search):
     :param genre_search: жанр
     :return: индекс жанра
     """
-    return genre.search_index[genre_search]
+    if genre_search in genre.search_index:
+        return genre.search_index[genre_search]
+    else:
+        return -1
 
 
 def parse_top(amount):
@@ -63,6 +66,7 @@ def parse_top(amount):
              "https://yummyanime.club/" + get_name(str(href), "href"))
         res.append(i)
         index += 1
+    response.connection.close()
     return res
 
 
@@ -91,6 +95,7 @@ def parse_new(amount):
                      "https://yummyanime.club/" + get_name(str(href), "href"))
                 res.append(i)
                 index += 1
+    response.connection.close()
     return res
 
 
@@ -106,6 +111,7 @@ def parse_random():
     text = response.text
     soup = BeautifulSoup(text, "lxml")
     img = soup.find_all("div", class_="poster-block")
+    response.connection.close()
     return "https://yummyanime.club/" + get_name(str(img), "src"), get_name(
         str(soup.find_all("div", class_="rating-info")), "title"), response.url
 
@@ -130,6 +136,7 @@ def search(word):
             anims["alias"])
         res.append(i)
         index += 1
+    response.connection.close()
     return res
 
 
@@ -154,4 +161,5 @@ def search_genre_top(index):
             anims["alias"])
         res.append(i)
         index += 1
+    response.connection.close()
     return res
