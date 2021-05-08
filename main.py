@@ -32,14 +32,15 @@ def generate_message(message_text, user_id):
     commands = message_text.split()
     if commands[0] == "/help" or commands[0] == "/start":
         return user_id, const.HELP, \
-               ("/top random\n" +
-                "/top [number]\n" +
-                "/new\n" +
-                "/random\n" +
-                "/search [your text]\n" +
-                "/search_genre_top [детектив/комедия/пародия/мехи/повседневность/романтика,/фантастика/этти]\n" +
-                "/subscribe\n" +
-                "/unsubscribe\n"), 1
+               ("/top random - случайное аниме из топ100\n" +
+                "/top [number] - топ number аниме с сайта\n" +
+                "/new - обновления аниме на сайте(новые поступления и тд)\n" +
+                "/random - случайное аниме с сайта\n" +
+                "/search [your text] - поиск аниме по запросу your text\n" +
+                "/search_genre_top [детектив/комедия/пародия/мехи/повседневность/романтика,/фантастика/этти]" +
+                " - топ 5 аниме по жанру\n" +
+                "/subscribe\n - подписаться на рассылку" +
+                "/unsubscribe\n - отписаться от рассылки"), 1
     elif len(commands) == 2 and commands[0] == "/top":
         return top(commands, user_id)
     elif commands[0] == "/new":
