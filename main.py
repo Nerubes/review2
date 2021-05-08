@@ -86,7 +86,7 @@ def generate_message(message_text, user_id):
         for word in range(1, len(commands)):
             ser = ser + commands[word] + " "
         for sub in database.get_all_subs(const.DATABASE):
-            return sub[0], const.ALL, ser
+            ans_to.append((sub[0], const.ALL, ser, len(database.get_all_subs(const.DATABASE))))
     else:
         ans_to.append((user_id, const.NOTHING, "Invalid Command. Type /help for all commands.", 1))
     return ans_to
