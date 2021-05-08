@@ -60,13 +60,18 @@ def generate_message(message_text, user_id):
         database.unsubscribe(user_id, const.DATABASE)
         return user_id, const.UNSUB, "You were unsubscribed.", 1
     elif commands[0] == "//send" and const.ADMIN == user_id:
-        ser = make_word(commands, " ")
-        return send(ser)
+        return send(commands)
     else:
         return user_id, const.NOTHING, "Invalid Command. Type /help for all commands.", 1
 
 
 def make_word(list_of_word, space):
+    """
+    Делает лист строк одной строкой
+    :param list_of_word: лист строк
+    :param space: что ставить между словами
+    :return: строка из всех строк
+    """
     res = ""
     for indx in range(1, len(list_of_word)):
         res = res + list_of_word[indx] + space
@@ -74,6 +79,12 @@ def make_word(list_of_word, space):
 
 
 def append_all(info_list, user_id):
+    """
+    Делает из листа, который возврощается функциями парс лист, который можно отправлять в функцию посылки
+    :param info_list: лист, который вернула функция парс
+    :param user_id: ид пользователя
+    :return: упорядоченное сообщение
+    """
     res = []
     for info in info_list:
         res.append((user_id, info[0], info[1] + ": " + info[2], len(info_list)))
@@ -81,6 +92,12 @@ def append_all(info_list, user_id):
 
 
 def top(commands, user_id):
+    """
+    Обработка команды /top
+    :param commands: полный набор аргументов
+    :param user_id: ид пользователя
+    :return: упорялоченное для вывода сообщение
+    """
     if commands[1] == "random":
         res = parse.parse_top(100)
         answ = res[random.randrange(100)]
@@ -93,6 +110,12 @@ def top(commands, user_id):
 
 
 def search(commands, user_id):
+    """
+    Обработка команды /search
+    :param commands: полный набор аргументов
+    :param user_id: ид пользователя
+    :return: упорялоченное для вывода сообщение
+    """
     ser = make_word(commands, "_")
     res = parse.search(ser)
     if res == []:
@@ -102,6 +125,12 @@ def search(commands, user_id):
 
 
 def search_genre_top(commands, user_id):
+    """
+    Обработка команды /search_genre_top
+    :param commands: полный набор аргументов
+    :param user_id: ид пользователя
+    :return: упорялоченное для вывода сообщение
+    """
     index = parse.get_index(commands[1])
     if index < 0:
         return user_id, const.NOTHING, "Invalid genre.", 1
@@ -110,10 +139,16 @@ def search_genre_top(commands, user_id):
         return append_all(res, user_id)
 
 
-def send(ser):
+def send(commands):
+    """
+    Обрабатываает команду //send
+    :param commands: полный список команд
+    :return: упорялоченное для вывода сообщение
+    """
+    word = make_word(commands, " ")
     ans_to = []
     for sub in database.get_all_subs(const.DATABASE):
-        ans_to.append((sub[0], const.ALL, ser, len(database.get_all_subs(const.DATABASE))))
+        ans_to.append((sub[0], const.ALL, word, len(database.get_all_subs(const.DATABASE))))
     return ans_to
 
 
