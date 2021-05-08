@@ -41,15 +41,7 @@ def generate_message(message_text, user_id):
                 "/subscribe\n" +
                 "/unsubscribe\n"), 1
     elif len(commands) == 2 and commands[0] == "/top":
-        if commands[1] == "random":
-            res = parse.parse_top(100)
-            answ = res[random.randrange(100)]
-            return user_id, answ[0], answ[1] + ": " + answ[2], 1
-        elif commands[1].isnumeric():
-            res = parse.parse_top(int(commands[1]))
-            return append_all(res, user_id)
-        else:
-            return user_id, const.NOTHING, "Invalid Command. Type /help for all commands.", 1
+        return top(commands, user_id)
     elif commands[0] == "/new":
         res = parse.parse_new(5)
         return append_all(res, user_id)
@@ -99,6 +91,18 @@ def append_all(info_list, user_id):
     for info in info_list:
         res.append((user_id, info[0], info[1] + ": " + info[2], len(info_list)))
     return res
+
+
+def top(commands, user_id):
+    if commands[1] == "random":
+        res = parse.parse_top(100)
+        answ = res[random.randrange(100)]
+        return user_id, answ[0], answ[1] + ": " + answ[2], 1
+    elif commands[1].isnumeric():
+        res = parse.parse_top(int(commands[1]))
+        return append_all(res, user_id)
+    else:
+        return user_id, const.NOTHING, "Invalid Command. Type /help for all commands.", 1
 
 
 if __name__ == "__main__":
