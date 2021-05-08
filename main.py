@@ -61,10 +61,7 @@ def generate_message(message_text, user_id):
         return user_id, const.UNSUB, "You were unsubscribed.", 1
     elif commands[0] == "//send" and const.ADMIN == user_id:
         ser = make_word(commands, " ")
-        ans_to = []
-        for sub in database.get_all_subs(const.DATABASE):
-            ans_to.append((sub[0], const.ALL, ser, len(database.get_all_subs(const.DATABASE))))
-        return ans_to
+        return send(ser)
     else:
         return user_id, const.NOTHING, "Invalid Command. Type /help for all commands.", 1
 
@@ -111,6 +108,13 @@ def search_genre_top(commands, user_id):
     else:
         res = parse.search_genre_top(index)
         return append_all(res, user_id)
+
+
+def send(ser):
+    ans_to = []
+    for sub in database.get_all_subs(const.DATABASE):
+        ans_to.append((sub[0], const.ALL, ser, len(database.get_all_subs(const.DATABASE))))
+    return ans_to
 
 
 if __name__ == "__main__":
