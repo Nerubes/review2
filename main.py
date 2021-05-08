@@ -49,7 +49,7 @@ def generate_message(message_text, user_id):
             for top_anim in res:
                 ans_to.append((user_id, top_anim[0], top_anim[1] + ": " + top_anim[2], len(res)))
         else:
-            ans_to.append((user_id, const.NOTHING, "Invalid Command. Type /help for all commands.", 1))4
+            ans_to.append((user_id, const.NOTHING, "Invalid Command. Type /help for all commands.", 1))
         return ans_to
     if commands[0] == "/new":
         res = parse.parse_new(5)
