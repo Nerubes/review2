@@ -38,6 +38,7 @@ def generate_message(message_text, user_id):
                        "/search_genre_top [детектив/комедия/пародия/мехи/повседневность/романтика,/фантастика/этти]\n" +
                        "/subscribe\n" +
                        "/unsubscribe\n", 1))
+        return ans_to
     if len(commands) == 2 and commands[0] == "/top":
         if commands[1] == "random":
             res = parse.parse_top(100)
@@ -48,24 +49,26 @@ def generate_message(message_text, user_id):
             for top_anim in res:
                 ans_to.append((user_id, top_anim[0], top_anim[1] + ": " + top_anim[2], len(res)))
         else:
-            ans_to.append((user_id, const.NOTHING, "Invalid Command. Type /help for all commands.", 1))
+            ans_to.append((user_id, const.NOTHING, "Invalid Command. Type /help for all commands.", 1))4
+        return ans_to
     if commands[0] == "/new":
         res = parse.parse_new(5)
         for new in res:
             ans_to.append((user_id, new[0], new[1] + ": " + new[2], len(res)))
+        return ans_to
     if commands[0] == "/random":
         res = parse.parse_random()
         ans_to.append((user_id, res[0], res[1] + ": " + res[2], 1))
+        return ans_to
     if len(commands) >= 2 and commands[0] == "/search":
-        ser = ""
-        for word in range(1, len(commands)):
-            ser = ser + commands[word] + "_"
+        ser = make_word(commands, "_")
         res = parse.search(ser)
         if res == []:
             ans_to.append((user_id, const.NOTHING, "Nothing was found.", 1))
         else:
             for anim in res:
                 ans_to.append((user_id, anim[0], anim[1] + ": " + anim[2], len(res)))
+        return ans_to
     if len(commands) >= 2 and commands[0] == "/search_genre_top":
         index = parse.get_index(commands[1])
         if index < 0:
@@ -74,22 +77,29 @@ def generate_message(message_text, user_id):
             res = parse.search_genre_top(index)
             for i in res:
                 ans_to.append((user_id, i[0], i[1] + ": " + i[2], len(res)))
+        return ans_to
     if commands[0] == "/subscribe":
         database.subscribe(user_id, const.DATABASE)
         print(user_id)
         ans_to.append((user_id, const.SUB, "You were subscribed.", 1))
+        return ans_to
     if commands[0] == "/unsubscribe":
         database.unsubscribe(user_id, const.DATABASE)
         ans_to.append((user_id, const.UNSUB, "You were unsubscribed.", 1))
+        return ans_to
     if commands[0] == "//send" and const.ADMIN == user_id:
-        ser = ""
-        for word in range(1, len(commands)):
-            ser = ser + commands[word] + " "
+        ser = make_word(commands, " ")
         for sub in database.get_all_subs(const.DATABASE):
             ans_to.append((sub[0], const.ALL, ser, len(database.get_all_subs(const.DATABASE))))
-    if len(ans_to):
-        ans_to.append((user_id, const.NOTHING, "Invalid Command. Type /help for all commands.", 1))
-    return ans_to
+        return ans_to
+    return user_id, const.NOTHING, "Invalid Command. Type /help for all commands.", 1
+
+
+def make_word(list_of_word, space):
+    res = ""
+    for indx in range(1, len(list_of_word)):
+        res = res + list_of_word[indx] + space
+    return res
 
 
 if __name__ == "__main__":
