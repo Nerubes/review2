@@ -49,19 +49,9 @@ def generate_message(message_text, user_id):
         res = parse.parse_random()
         return user_id, res[0], res[1] + ": " + res[2], 1
     elif len(commands) >= 2 and commands[0] == "/search":
-        ser = make_word(commands, "_")
-        res = parse.search(ser)
-        if res == []:
-            return user_id, const.NOTHING, "Nothing was found.", 1
-        else:
-            return append_all(res, user_id)
+        return search(commands, user_id)
     elif len(commands) >= 2 and commands[0] == "/search_genre_top":
-        index = parse.get_index(commands[1])
-        if index < 0:
-            return user_id, const.NOTHING, "Invalid genre.", 1
-        else:
-            res = parse.search_genre_top(index)
-            return append_all(res, user_id)
+        return search_genre_top(commands, user_id)
     elif commands[0] == "/subscribe":
         database.subscribe(user_id, const.DATABASE)
         print(user_id)
@@ -103,6 +93,24 @@ def top(commands, user_id):
         return append_all(res, user_id)
     else:
         return user_id, const.NOTHING, "Invalid Command. Type /help for all commands.", 1
+
+
+def search(commands, user_id):
+    ser = make_word(commands, "_")
+    res = parse.search(ser)
+    if res == []:
+        return user_id, const.NOTHING, "Nothing was found.", 1
+    else:
+        return append_all(res, user_id)
+
+
+def search_genre_top(commands, user_id):
+    index = parse.get_index(commands[1])
+    if index < 0:
+        return user_id, const.NOTHING, "Invalid genre.", 1
+    else:
+        res = parse.search_genre_top(index)
+        return append_all(res, user_id)
 
 
 if __name__ == "__main__":
