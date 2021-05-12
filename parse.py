@@ -1,6 +1,7 @@
 import cloudscraper
 from bs4 import BeautifulSoup
 
+import const
 import genre
 
 
@@ -27,9 +28,9 @@ def get_update(string):
     :param string: откуда надо достать информацию
     :return: дату обновления, название тайтла и описание обновления
     """
-    return str(string.find_all("span", class_="update-date"))[27:][:-8] + ". " + str(
-        string.find_all("span", class_="update-title"))[28:][:-8] + ". " + str(
-        string.find_all("span", class_="update-info"))[27:][:-8]
+    return str(string.find_all("span", class_="update-date"))[const.UPDATE_CONST:][:const.UPDATE_CONST_2] + ". " + str(
+        string.find_all("span", class_="update-title"))[const.UPDATE_CONST_1_1:][:const.UPDATE_CONST_2] + ". " + str(
+        string.find_all("span", class_="update-info"))[const.UPDATE_CONST:][:const.UPDATE_CONST_2]
 
 
 def get_index(genre_search):
@@ -58,14 +59,12 @@ def parse_top(amount):
     soup = BeautifulSoup(text, "lxml")
     hrefs = soup.find_all("a", class_="image-block")
     res = []
-    index = 0
-    for href in hrefs:
+    for index, href in enumerate(hrefs):
         if index >= amount:
             break
         i = ("https://yummyanime.club/" + get_name(str(href), "src"), get_name(str(href), "alt"),
              "https://yummyanime.club/" + get_name(str(href), "href"))
         res.append(i)
-        index += 1
     response.connection.close()
     return res
 
@@ -127,15 +126,13 @@ def search(word):
     response = scraper.get(site)
     response.encoding = "utf8"
     res = []
-    index = 0
-    for anims in response.json()["animes"]["data"]:
+    for index, anims in enumerate(response.json()["animes"]["data"]):
         if index >= 5:
             break
         i = "https://yummyanime.club/" + str(anims["image"]), str(
             anims["name"]), "https://yummyanime.club/catalog/item/" + str(
             anims["alias"])
         res.append(i)
-        index += 1
     response.connection.close()
     return res
 
@@ -152,8 +149,7 @@ def search_genre_top(index):
     response = scraper.get(site)
     response.encoding = "utf8"
     res = []
-    index = 0
-    for anims in response.json()["animes"]["data"]:
+    for index, anims in enumerate(response.json()["animes"]["data"]):
         if index >= 5:
             break
         i = "https://yummyanime.club/" + str(anims["image"]), str(

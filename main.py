@@ -39,8 +39,8 @@ def generate_message(message_text, user_id):
                 "/search [your text] - поиск аниме по запросу your text\n" +
                 "/search_genre_top [детектив/комедия/пародия/мехи/повседневность/романтика,/фантастика/этти]" +
                 " - топ 5 аниме по жанру\n" +
-                "/subscribe\n - подписаться на рассылку" +
-                "/unsubscribe\n - отписаться от рассылки"), 1
+                "/subscribe - подписаться на рассылку\n" +
+                "/unsubscribe - отписаться от рассылки\n"), 1
     elif len(commands) == 2 and commands[0] == "/top":
         return top(commands, user_id)
     elif commands[0] == "/new":
