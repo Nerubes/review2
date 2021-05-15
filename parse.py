@@ -127,7 +127,7 @@ def search(word):
     response.encoding = "utf8"
     res = []
     for index, anims in enumerate(response.json()["animes"]["data"]):
-        if index >= 5:
+        if index >= const.AMOUNT:
             break
         i = "https://yummyanime.club/" + str(anims["image"]), str(
             anims["name"]), "https://yummyanime.club/catalog/item/" + str(
@@ -150,12 +150,11 @@ def search_genre_top(index):
     response.encoding = "utf8"
     res = []
     for index, anims in enumerate(response.json()["animes"]["data"]):
-        if index >= 5:
+        if index >= const.AMOUNT:
             break
         i = "https://yummyanime.club/" + str(anims["image"]), str(
             anims["name"]), "https://yummyanime.club/catalog/item/" + str(
             anims["alias"])
         res.append(i)
-        index += 1
     response.connection.close()
     return res

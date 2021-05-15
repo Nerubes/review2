@@ -44,7 +44,7 @@ def generate_message(message_text, user_id):
     elif len(commands) == 2 and commands[0] == "/top":
         return top(commands, user_id)
     elif commands[0] == "/new":
-        res = parse.parse_new(5)
+        res = parse.parse_new(const.AMOUNT)
         return append_all(res, user_id)
     elif commands[0] == "/random":
         res = parse.parse_random()
