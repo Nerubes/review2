@@ -61,9 +61,9 @@ def parse_top(amount):
     for amount_parsed, href in enumerate(hrefs):
         if amount_parsed >= amount:
             break
-        i = ("https://yummyanime.club/" + get_name(str(href), "src"), get_name(str(href), "alt"),
+        message = ("https://yummyanime.club/" + get_name(str(href), "src"), get_name(str(href), "alt"),
              "https://yummyanime.club/" + get_name(str(href), "href"))
-        res.append(i)
+        res.append(message)
     response.connection.close()
     return res
 
@@ -89,9 +89,9 @@ def parse_new(amount):
             if str(href).find("/img/poster") != -1:
                 if amount_parsed >= amount:
                     break
-                i = ("https://yummyanime.club/" + get_name(str(href), "src"), get_update(href),
+                message = ("https://yummyanime.club/" + get_name(str(href), "src"), get_update(href),
                      "https://yummyanime.club/" + get_name(str(href), "href"))
-                res.append(i)
+                res.append(message)
                 amount_parsed += 1
     response.connection.close()
     return res
@@ -128,10 +128,10 @@ def search(word):
     for amount_parsed, anims in enumerate(response.json()["animes"]["data"]):
         if amount_parsed >= const.AMOUNT:
             break
-        i = "https://yummyanime.club/" + str(anims["image"]), str(
+        message = "https://yummyanime.club/" + str(anims["image"]), str(
             anims["name"]), "https://yummyanime.club/catalog/item/" + str(
             anims["alias"])
-        res.append(i)
+        res.append(message)
     response.connection.close()
     return res
 
@@ -151,9 +151,9 @@ def search_genre_top(index):
     for amount_parsed, anims in enumerate(response.json()["animes"]["data"]):
         if amount_parsed >= const.AMOUNT:
             break
-        i = "https://yummyanime.club/" + str(anims["image"]), str(
+        message = "https://yummyanime.club/" + str(anims["image"]), str(
             anims["name"]), "https://yummyanime.club/catalog/item/" + str(
             anims["alias"])
-        res.append(i)
+        res.append(message)
     response.connection.close()
     return res
