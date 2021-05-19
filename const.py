@@ -1,4 +1,3 @@
-TOKEN = "1881511655:AAEwLZaRF5rdv5f0azTU-FX5HToVa4vejmc"
 ADMIN = 470008567
 DATABASE = "users.bd"
 NOTHING = "https://znaiwifi.com/wp-content/uploads/2018/01/hqdefault.jpg"

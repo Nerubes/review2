@@ -66,19 +66,6 @@ def generate_message(message_text, user_id):
         return user_id, const.NOTHING, "Invalid Command. Type /help for all commands.", 1
 
 
-def make_word(list_of_word, space):
-    """
-    Делает лист строк одной строкой
-    :param list_of_word: лист строк
-    :param space: что ставить между словами
-    :return: строка из всех строк
-    """
-    res = ""
-    for indx in range(1, len(list_of_word)):
-        res = res + list_of_word[indx] + space
-    return res
-
-
 def append_all(info_list, user_id):
     """
     Делает из листа, который возврощается функциями парс лист, который можно отправлять в функцию посылки
@@ -117,9 +104,9 @@ def search(commands, user_id):
     :param user_id: ид пользователя
     :return: упорялоченное для вывода сообщение
     """
-    ser = make_word(commands, "_")
+    ser = "_".join(commands[1:])
     res = parse.search(ser)
-    if res == []:
+    if not res:
         return user_id, const.NOTHING, "Nothing was found.", 1
     else:
         return append_all(res, user_id)
@@ -146,7 +133,7 @@ def send(commands):
     :param commands: полный список команд
     :return: упорялоченное для вывода сообщение
     """
-    word = make_word(commands, " ")
+    word = "_".join(commands[1:])
     ans_to = []
     for sub in database.get_all_subs(const.DATABASE):
         ans_to.append((sub[0], const.ALL, word, len(database.get_all_subs(const.DATABASE))))

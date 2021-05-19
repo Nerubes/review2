@@ -41,8 +41,7 @@ def get_index(genre_search):
     """
     if genre_search in genre.search_index:
         return genre.search_index[genre_search]
-    else:
-        return -1
+    return -1
 
 
 def parse_top(amount):
@@ -59,8 +58,8 @@ def parse_top(amount):
     soup = BeautifulSoup(text, "lxml")
     hrefs = soup.find_all("a", class_="image-block")
     res = []
-    for index, href in enumerate(hrefs):
-        if index >= amount:
+    for amount_parsed, href in enumerate(hrefs):
+        if amount_parsed >= amount:
             break
         i = ("https://yummyanime.club/" + get_name(str(href), "src"), get_name(str(href), "alt"),
              "https://yummyanime.club/" + get_name(str(href), "href"))
@@ -77,7 +76,7 @@ def parse_new(amount):
     описаний изменений, дат изменений и ссылкок на сраницы аниме
     """
     res = []
-    while res == []:
+    while not res:
         scraper = cloudscraper.create_scraper()
         site = "https://yummyanime.club/anime-updates"
         response = scraper.get(site)
@@ -85,15 +84,15 @@ def parse_new(amount):
         text = response.text
         soup = BeautifulSoup(text, "lxml")
         hrefs = soup.find_all("a")
-        index = 0
+        amount_parsed = 0
         for href in hrefs:
             if str(href).find("/img/poster") != -1:
-                if index >= amount:
+                if amount_parsed >= amount:
                     break
                 i = ("https://yummyanime.club/" + get_name(str(href), "src"), get_update(href),
                      "https://yummyanime.club/" + get_name(str(href), "href"))
                 res.append(i)
-                index += 1
+                amount_parsed += 1
     response.connection.close()
     return res
 
@@ -126,8 +125,8 @@ def search(word):
     response = scraper.get(site)
     response.encoding = "utf8"
     res = []
-    for index, anims in enumerate(response.json()["animes"]["data"]):
-        if index >= const.AMOUNT:
+    for amount_parsed, anims in enumerate(response.json()["animes"]["data"]):
+        if amount_parsed >= const.AMOUNT:
             break
         i = "https://yummyanime.club/" + str(anims["image"]), str(
             anims["name"]), "https://yummyanime.club/catalog/item/" + str(
@@ -149,8 +148,8 @@ def search_genre_top(index):
     response = scraper.get(site)
     response.encoding = "utf8"
     res = []
-    for index, anims in enumerate(response.json()["animes"]["data"]):
-        if index >= const.AMOUNT:
+    for amount_parsed, anims in enumerate(response.json()["animes"]["data"]):
+        if amount_parsed >= const.AMOUNT:
             break
         i = "https://yummyanime.club/" + str(anims["image"]), str(
             anims["name"]), "https://yummyanime.club/catalog/item/" + str(
