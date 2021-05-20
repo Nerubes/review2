@@ -51,7 +51,7 @@ def send_unsubscribe(message):
 
 
 @bot.message_handler(commands=["send"])
-def send_unsubscribe(message):
+def send_send(message):
     """
     Получает сообщение с запросом на отправку рассылики и отправлыет ее подписчикам
     :param message: сообщение
@@ -139,15 +139,15 @@ def get_help(user_id):
     :return: сообщение с помощью
     """
     return user_id, const.HELP, \
-           ("/top random - случайное аниме из топ100\n" +
-            "/top [number] - топ number аниме с сайта\n" +
-            "/new - обновления аниме на сайте(новые поступления и тд)\n" +
-            "/random - случайное аниме с сайта\n" +
-            "/search [your text] - поиск аниме по запросу your text\n" +
-            "/search_genre_top [детектив/комедия/пародия/мехи/повседневность/романтика,/фантастика/этти]" +
-            " - топ 5 аниме по жанру\n" +
-            "/subscribe - подписаться на рассылку\n" +
-            "/unsubscribe - отписаться от рассылки\n"), 1
+        ("/top random - случайное аниме из топ100\n" +
+         "/top [number] - топ number аниме с сайта\n" +
+         "/new - обновления аниме на сайте(новые поступления и тд)\n" +
+         "/random - случайное аниме с сайта\n" +
+         "/search [your text] - поиск аниме по запросу your text\n" +
+         "/search_genre_top [детектив/комедия/пародия/мехи/повседневность/романтика,/фантастика/этти]" +
+         " - топ 5 аниме по жанру\n" +
+         "/subscribe - подписаться на рассылку\n" +
+         "/unsubscribe - отписаться от рассылки\n"), 1
 
 
 def get_subscribe(user_id):
