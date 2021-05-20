@@ -1,7 +1,5 @@
 import os
-from config import set_token
 
-set_token()
 TOKEN = os.environ.get("TOKEN")
 ADMIN = 470008567
 DATABASE = "users.bd"
