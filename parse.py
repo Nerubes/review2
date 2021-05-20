@@ -62,7 +62,7 @@ def parse_top(amount):
         if amount_parsed >= amount:
             break
         message = ("https://yummyanime.club/" + get_name(str(href), "src"), get_name(str(href), "alt"),
-             "https://yummyanime.club/" + get_name(str(href), "href"))
+                   "https://yummyanime.club/" + get_name(str(href), "href"))
         res.append(message)
     response.connection.close()
     return res
@@ -90,7 +90,7 @@ def parse_new(amount):
                 if amount_parsed >= amount:
                     break
                 message = ("https://yummyanime.club/" + get_name(str(href), "src"), get_update(href),
-                     "https://yummyanime.club/" + get_name(str(href), "href"))
+                           "https://yummyanime.club/" + get_name(str(href), "href"))
                 res.append(message)
                 amount_parsed += 1
     response.connection.close()
