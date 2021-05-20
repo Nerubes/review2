@@ -1,3 +1,8 @@
+import os
+from config import set_token
+
+set_token()
+TOKEN = os.environ.get("TOKEN")
 ADMIN = 470008567
 DATABASE = "users.bd"
 NOTHING = "https://znaiwifi.com/wp-content/uploads/2018/01/hqdefault.jpg"

@@ -6,7 +6,7 @@ import const
 import database
 import parse
 
-bot = tb.TeleBot("Your TOKEN")
+bot = tb.TeleBot(const.TOKEN)
 
 
 @bot.message_handler(commands=["start", "help"])
